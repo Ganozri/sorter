@@ -29,18 +29,27 @@ this.array.push(element);
 
 
 
-   sort(indices)
-  {
-  var count = indices[indices.length-1];
-  var m = this.array;
-for (var i = 0; i < count; i++)
-     for (var j = indices[0]; j < count-i; j++)
-        if (m[j]> m[j+1]) {
-           var max = m[j];
-           m[j] = m[j+1];
-           m[j+1] = max;
-        }
-  }
+  sort(indices)
+{
+var k=[];
+for (var i=0; i<indices.length;i++)
+{
+k[i]=this.array[indices[i]];
+}
+function compare(a, b)
+{
+if (a > b) return 1;
+if (a < b) return -1;
+}
+k.sort(compare);
+indices.sort(compare);
+for (var i=0; i<indices.length;i++)
+{
+this.array[indices[i]]=k[i];
+}
+return this.array;
+
+}
 
   setComparator(compareFunction) {
     // your implementation
